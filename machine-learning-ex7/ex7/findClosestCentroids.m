@@ -22,6 +22,27 @@ idx = zeros(size(X,1), 1);
 %
 
 
+% for i = 1:length(idx)
+%     distance = zeros(K, 1);
+%     for j = 1:K
+%         
+%         distance(j) = sum(sum((X(i, :) - centroids(j, :)) .^ 2 ));
+%     end
+%     [value, idx(i)] = min(distance);
+% end
+
+
+for i = 1 : size(X, 1)
+   minn = -1;
+   for j = 1 : K
+       dist = X(i, :) - centroids(j, :);
+       tmp = dist * dist';
+       if idx(i) == 0 || tmp < minn
+           minn = tmp;
+           idx(i) = j;
+       end
+   end
+end
 
 
 
